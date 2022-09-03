@@ -27,9 +27,6 @@ public class OrderServiceImpl implements OrderService{
     //내가 썼던 @Autowired는 스프링 내부에 앱 컨피규레이션을 만들고 거기에 넣어둠
 
 
-
-
-
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
          Member member =  memberRepository.findById(memberId);
@@ -37,5 +34,10 @@ public class OrderServiceImpl implements OrderService{
           int discountPrice = discountPolicy.discount(member,itemPrice);
 
           return new Order(memberId,itemName,itemPrice,discountPrice);
+    }
+
+    //테스트 용도
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
     }
 }
