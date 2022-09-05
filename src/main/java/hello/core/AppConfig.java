@@ -43,7 +43,8 @@ public class AppConfig {
     @Bean
     public OrderService orderService(){
         System.out.println("call AppConfig.orderService");
-        return new OrderServiceImpl(memberRepository(),discountPolicy());
+        //return new OrderServiceImpl(memberRepository(),discountPolicy());
+        return null;
     }//구현체로 이 두 개를 쓸게요
     @Bean
     public DiscountPolicy discountPolicy(){
