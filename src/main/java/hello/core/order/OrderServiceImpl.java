@@ -6,7 +6,10 @@ import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderServiceImpl implements OrderService{
 
     //private final MemberRepository memberRepository =  new MemoryMemberRepository();
@@ -18,6 +21,7 @@ public class OrderServiceImpl implements OrderService{
     //파이널은 값이 무조건 필요하므로 OCP, DIP 위반이 된다. 그래서 아래처럼 쓴다.
 
     //근데 이러면 구현체가 없어서 NullPointerException인데?
+    @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
