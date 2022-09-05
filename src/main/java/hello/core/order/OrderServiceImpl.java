@@ -8,10 +8,11 @@ import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor // final 붙은 필드들을 가지고 생성자를 만들어준다.
+//@RequiredArgsConstructor // final 붙은 필드들을 가지고 생성자를 만들어준다.
 public class OrderServiceImpl implements OrderService{
 
     // 자동 주입은 공통적으로 @Autowired를 사용한다. 이게 핵심.
@@ -34,13 +35,14 @@ public class OrderServiceImpl implements OrderService{
 //    @Autowired  private final DiscountPolicy discountPolicy;
 
 
-    //@Autowired//생성자가 하나 일때는 생략 가능, 스프링 빈으로 등록 동시에 의존관계 주입
-//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-//        System.out.println("memberRepository = " + memberRepository);
-//        System.out.println("discountPolicy = " + discountPolicy);
-//        this.memberRepository = memberRepository;
-//        this.discountPolicy = discountPolicy;
-//    }//주로 생성자 주입은 불변 객체를 주입할 때 사용
+    @Autowired//생성자가 하나 일때는 생략 가능, 스프링 빈으로 등록 동시에 의존관계 주입
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {//@Qualifier("mainDiscountPolicy") DiscountPolicy discountPolicy) {
+        System.out.println("memberRepository = " + memberRepository);//Qualifier는 Qualifier끼리 매칭 할 때만 써라
+        System.out.println("discountPolicy = " + discountPolicy);
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+        //@Autowired는 처음엔 타입으로 메칭 하고 타입의 매칭 결과가 2개 이상이면 그 다음에 필드명(빈 이름),파라미터명으로 조회한다.
+    }//주로 생성자 주입은 불변 객체를 주입할 때 사용
     //생성자 주입, Injection
     //생성자로 주입한다.
     //내가 썼던 @Autowired는 스프링 내부에 앱 컨피규레이션을 만들고 거기에 넣어둠
