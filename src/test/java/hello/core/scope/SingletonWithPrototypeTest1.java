@@ -47,13 +47,10 @@ public class SingletonWithPrototypeTest1 {
     static class ClientBean{
         //private final PrototypeBean prototypeBean;//생성 시점에 주입 x01
 
-
-        @Autowired
-        private Provider
         
         //오브젝트 프로바이더, 팩토리 둘 다 스프링에 의존적
-//        @Autowired//이거 써라 오브젝트팩토리 확장판, 컨테이너 대신 조회해주는 대리자 역할, 의존관계 조회(Dependency Lookup)
-//        private ObjectProvider<PrototypeBean> prototypeBeanProvider;
+        @Autowired//이거 써라 오브젝트팩토리 확장판, 컨테이너 대신 조회해주는 대리자 역할, 의존관계 조회(Dependency Lookup)
+        private ObjectProvider<PrototypeBean> prototypeBeanProvider;
 
 //        @Autowired
 //        private ObjectFactory<PrototypeBean> prototypeBeanProvider;

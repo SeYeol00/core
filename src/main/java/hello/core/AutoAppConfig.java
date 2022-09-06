@@ -22,9 +22,10 @@ import org.springframework.context.annotation.FilterType;
 )
 public class AutoAppConfig {
 
-    @Bean(name = "memoryMemberRepository")
-    MemberRepository memberRepository(){
-        return new MemoryMemberRepository();
-    }//이름이 같으면 수동 빈 등록이 자동 빈 등록을 오버라이딩 한다.
+    //@Bean(name = "memoryMemberRepository")
+//    @Bean
+//    MemberRepository memberRepository(){
+//        return new MemoryMemberRepository();
+//    }//이름이 같으면 수동 빈 등록이 자동 빈 등록을 오버라이딩 한다.
     //최근 스프링 부트에서는 수동 빈 등록과 자동 빈 등록이 이름이 같으면 충돌하여 오류를 내도록 설계하였다.
 }
