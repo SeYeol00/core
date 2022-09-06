@@ -1,5 +1,6 @@
 package hello.core.order;
 
+import hello.core.annotation.MainDiscountPolicy;
 import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
 import hello.core.discount.RateDiscountPolicy;
@@ -36,7 +37,8 @@ public class OrderServiceImpl implements OrderService{
 
 
     @Autowired//생성자가 하나 일때는 생략 가능, 스프링 빈으로 등록 동시에 의존관계 주입
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {//@Qualifier("mainDiscountPolicy") DiscountPolicy discountPolicy) {
+    public OrderServiceImpl(MemberRepository memberRepository,
+                            @MainDiscountPolicy DiscountPolicy discountPolicy) {//@Qualifier("mainDiscountPolicy") DiscountPolicy discountPolicy) {
         System.out.println("memberRepository = " + memberRepository);//Qualifier는 Qualifier끼리 매칭 할 때만 써라
         System.out.println("discountPolicy = " + discountPolicy);
         this.memberRepository = memberRepository;
